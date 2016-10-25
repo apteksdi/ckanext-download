@@ -1,15 +1,15 @@
 # ckanext-download
----
+
 The extension provides a way to summarize the resource download event. Customized template snippets and summary information pages are also supported.
 
 
 # Requirements
----
+
 The extension is compatible with CKAN core 2.3 or later.
 
 
 # Configuration
----
+
 Set the configuration to use the plugin :
 
 ```ini
@@ -21,33 +21,33 @@ ckan.download.psqlUrl = postgresql://(dbuser):(dbpass)@(dbhost)/(dbname)
 
 
 # Resource Summary
----
+
 After installing the extension, the url path **/download** and **/download_date** on the browser show the download summary.
 
 * url **/download**
 
-![/download](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/doc/image/download.png)
+![/download](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/master/doc/image/download.png)
 
 * url **/download_date**
 
-![/download_date](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/doc/image/download_date.png)
+![/download_date](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/master/doc/image/download_date.png)
 
 
 # Template snippets
----
+
 The extension also customizes the template on several sections.
 
 * on dataset, url **/dataset**
 
-![/dataset](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/doc/image/dataset.png)
+![/dataset](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/master/doc/image/dataset.png)
 
 * on dataset info, url **/dataset/(dataset)** 
 
-![/dataset/(dataset)](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/doc/image/datasetinfo.png)
+![/dataset/(dataset)](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/master/doc/image/datasetinfo.png)
 
 * on resource, url **/dataset/(dataset)/resource/(id)**
 
-![/dataset/(dataset)/resource/(id)](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/doc/image/resource.png)
+![/dataset/(dataset)/resource/(id)](https://raw.githubusercontent.com/jiankaiwang/ckanext-download/master/doc/image/resource.png)
 
 Set the configuration to customize the template.
 
@@ -58,7 +58,7 @@ ckan.download.template = true
 
 
 # Traking_summary supported
----
+
 * The extension also supports the default view tracking in the ckan (2.3 or later).
 * Follow the [page (http://docs.ckan.org/en/latest/maintaining/tracking.html)](http://docs.ckan.org/en/latest/maintaining/tracking.html) to setup view tracking.
 * The extension recognizes the configuration below :
@@ -85,7 +85,7 @@ nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=
 
 
 # Development Installation
----
+
 
 To install ckanext-download for development, activate your CKAN virtualenv and do :
 
@@ -101,7 +101,7 @@ paster serve /etc/ckan/default/development.ini
 
 
 # Installation
----
+
 
 To install ckanext-download:
 
@@ -130,6 +130,10 @@ sudo service nginx restart
 ```
 
 
+# 3rd Party Javascript Libraries
 
+* jquery.tablesorter : v.2.0.3
+* jquery : v.1.12.4
+* plotly : v.1.16.2
 
 
