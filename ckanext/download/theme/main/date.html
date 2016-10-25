@@ -1,0 +1,73 @@
+{% extends 'page.html' %}
+
+{% block breadcrumb_content_selected %}{% endblock %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+  <li class="active"><a href="">{{ _('Summary on Date') }}</a></li>
+{% endblock %}
+
+{% block content_primary_nav %}
+
+  {{ h.build_nav_icon('download_summary', _('Data Dwonload Summary')) }}
+  {{ h.build_nav_icon('download_date_summary', _('Latest Download Summary')) }}
+
+{% endblock %}
+
+{% block primary_content_inner %}
+
+<h3 class="page-heading">{{ _('Count Downloaded Resources') }}</h3>
+<table class="table table-header table-hover table-bordered">
+  <col width="40" />
+  <col width="30" />
+  <col width="30" />
+  <thead>
+    <tr>
+      <th scope="col">{{ _('Total Resources') }}</th>
+      <th scope="col">{{ _('Downloaded') }}</th>
+      <th scope="col">{{ _('Not Yet') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ttlres, dwnres, leftres in h.getResSummaryInfo() %}
+    <tr>
+      <td> {{ ttlres }} </td>
+      <td> {{ dwnres }} </td>
+      <td> {{ leftres }} </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3 class="page-heading">{{ _('Track Downloaded Resources') }}</h3>
+<div id="downloadTrendChartContainer" style="width: 100%; height: 150px; margin-bottom: 10px;">
+  <div id="downloadTrendChart" style="width: 100%; height: 100%;"></div>
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+
+  {% block secondary_help_content %} 
+
+      <h2 class="module-heading">
+        <i class="icon-medium icon-info-sign"></i>
+        Description
+      </h2>
+
+      <div class="module-content">
+          <p>Counting downloaded resources is to count downloaded resources (was downloaded at least 1 time).</p>
+      </div>
+
+      <h2 class="module-heading">
+        <i class="icon-medium icon-info-sign"></i>
+        Tracking Chart
+      </h2>
+
+      <div class="module-content">
+          <p>Calculate how many resources are downloaded in different date periods.</p>
+      </div>
+
+  {% endblock %}
+
+{% endblock %}

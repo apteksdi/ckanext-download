@@ -1,0 +1,102 @@
+{% extends 'page.html' %}
+
+{% set linkInfo = extra_vars %}
+
+{% block breadcrumb_content_selected %}{% endblock %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+  <li class="active"><a href="">{{ _('Summary') }}</a></li>
+{% endblock %}
+
+{% block content_primary_nav %}
+
+  {{ h.build_nav_icon('download_summary', _('Data Dwonload Summary')) }}
+  {{ h.build_nav_icon('download_date_summary', _('Latest Download Summary')) }}
+
+{% endblock %}
+
+{% block primary_content_inner %}
+
+<h3 class="page-heading">{{ _('Resource Download Summary') }}</h3>
+<table class="table table-header table-hover table-bordered tablesorter" id="resDwnSum">
+  <col width="25" />
+  <col width="25" />
+  <col width="20" />
+  <col width="20" />
+  <col width="10" />
+{% if tracking == "False" %}
+  <thead>
+    <tr>
+      <th scope="col">{{ _('Resource') }}</th>
+      <th scope="col">{{ _('Dataset') }}</th>
+      <th scope="col">{{ _('Download Count') }}</th>
+      <th scope="col">{{ _('Latest') }}</th>
+      <th scope="col">{{ _('Link') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for res, ds, dc, ld, link, pkgid, pkgtte, ttlview  in h.getResDwnSummary('all') %}
+    <tr>
+      <td> {{ h.transform2UTF8(res) | truncate(10) }} </td>
+      <td> {{ h.transform2UTF8(pkgtte) | truncate(10) }} </td>
+      <td> {{ dc }} </td>
+      <td> {{ ld }} </td>
+      <td><a href="{{ _('{0}dataset/{1}/resource/{2}').format(h.url_for(controller='home', action='index'), ds, link) }}" class="resource-url-analytics" target="_blank"><i class="icon-external-link"></i> link</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+{% else %}
+  <thead>
+    <tr>
+      <th scope="col">{{ _('Resource') }}</th>
+      <th scope="col">{{ _('Dataset') }}</th>
+      <th scope="col">{{ _('Download Count') }}</th>
+      <th scope="col">{{ _('View Count') }}</th>
+      <th scope="col">{{ _('Link') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for res, ds, dc, ld, link, pkgid, pkgtte, ttlview in h.getBothViewDwnCount('all') %}
+    <tr>
+      <td> {{ h.transform2UTF8(res) | truncate(10) }} </td>
+      <td> {{ h.transform2UTF8(pkgtte) | truncate(10) }} </td>
+      <td> {{ dc }} </td>
+      <td> {{ ttlview }} </td>
+      <td><a href="{{ _('{0}dataset/{1}/resource/{2}').format(h.url_for(controller='home', action='index'), ds, link) }}" class="resource-url-analytics" target="_blank"><i class="icon-external-link"></i> link</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+{% endif %}
+</table>
+{% endblock %}
+
+{% block secondary_content %}
+
+  {% block secondary_help_content %} 
+
+      <h2 class="module-heading">
+        <i class="icon-medium icon-info-sign"></i>       
+        Description      
+      </h2>
+
+      <div class="module-content">
+          <p>Summary information for each resource which is downloaded.</p>
+      </div>
+
+      <h2 class="module-heading">
+        <i class="icon-medium icon-info-sign"></i>
+        Parameter
+      </h2>
+
+      <div class="module-content">
+        <p>The parameter " Download Count " is calculated by clicking the link for downloading.</p>
+        {% if tracking == "True" %}
+          <p class="module-footer"></p>
+          <p>The parameter " View Count " directly queries from ckan table " tracking_summary " when the flag " ckan.tracking_enabled " is set "true".</p>
+        {% endif %}
+      </div>
+      
+  {% endblock %}
+
+{% endblock %}

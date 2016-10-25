@@ -1,0 +1,7 @@
+{
+  "id" : "serial primary key",
+  "usrid" : "text",
+  "count" : "integer",
+  "latest" : "date",
+  "dsid" : "text"
+}
