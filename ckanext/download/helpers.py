@@ -339,7 +339,10 @@ def getViewSum(getPkgId):
 	GROUP BY package_id;
     """, True, {})
     if p2l.status()['state'] == "success":
-        return str(p2l.status()['data'][0]["total_view"])
+        if len(p2l.status()['data']) > 0:
+            return str(p2l.status()['data'][0]["total_view"])
+        else:
+            return str(0)
     else:
         return str(-1)
 
