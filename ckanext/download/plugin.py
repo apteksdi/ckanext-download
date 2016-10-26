@@ -64,6 +64,9 @@ class DownloadPlugin(plugins.SingletonPlugin):
         template = plugins.toolkit.asbool(config.get('ckan.download.template'))
         if not (template == None or template == False):
             plugins.toolkit.add_template_directory(config_, 'templates')
+        else:
+            # keep counting download is available
+            plugins.toolkit.add_template_directory(config, 'theme/templates')
 
         # new page
         plugins.toolkit.add_template_directory(config, 'theme/main')
@@ -126,7 +129,6 @@ class DownloadController(base.BaseController):
     # 
     def download_summary(self):
         if plugins.toolkit.request.method == "GET" \
-          and len(plugins.toolkit.request.params) == 2 \
           and "resourceid" in plugins.toolkit.request.params.keys() \
           and "dataurl" in plugins.toolkit.request.params.keys():
             # count the resource
