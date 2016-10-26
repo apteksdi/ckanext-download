@@ -4,6 +4,7 @@ import ckan.plugins.toolkit as toolkit
 import ckan.lib.base as base
 import ckan.lib.render as render
 import routes.mapper
+import os.path
 import py2psql
 import json
 from pylons import config
