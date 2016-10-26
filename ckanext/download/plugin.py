@@ -5,8 +5,6 @@ import ckan.lib.base as base
 import ckan.lib.render as render
 import routes.mapper
 import py2psql
-from flask import Flask, redirect, url_for, jsonify
-import os.path
 import json
 from pylons import config
 import re
