@@ -4,6 +4,7 @@ import ckan.plugins.toolkit as toolkit
 import ckan.lib.base as base
 import ckan.lib.render as render
 import routes.mapper
+from routes import redirect_to
 import os.path
 import py2psql
 import json
@@ -75,7 +76,7 @@ class DownloadPlugin(plugins.SingletonPlugin):
         plugins.toolkit.add_resource('fanstatic', 'dwnres')
 
         if config.get('ckan.download.psqlUrl') == None:
-	    return "Error : Configuration is not set."
+            return "Error : Configuration is not set."
         
         if self.createTb()["state"] != "success":
             return "Error : The download_summary table can not be created. [info] : " + self.createTb()["info"]
@@ -135,7 +136,8 @@ class DownloadController(base.BaseController):
             self.__countRes(plugins.toolkit.request.params.get('resourceid'))
 
             # redirect to the data url
-            r = helpers.redirect_to(unicode(plugins.toolkit.request.params.get('dataurl')).encode('utf-8'))
+            #r = helpers.redirect_to(unicode(plugins.toolkit.request.params.get('dataurl')).encode('utf-8'))
+            r = redirect_to(unicode(plugins.toolkit.request.params.get('dataurl')).encode('utf-8'))
             return r
         else:
             return self.__renderUrl('index')
