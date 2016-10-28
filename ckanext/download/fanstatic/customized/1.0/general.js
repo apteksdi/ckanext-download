@@ -18,7 +18,7 @@ var downloadTrendChartLayout= {
         xaxis: { showgrid: false, zeroline: false, autotick: false },
         yaxis: { showline: false }
 };
-function plotTrendChart() {
+function plotDwnTrendChart() {
   if(window.jQuery && $("#downloadTrendChart").length > 0) {
     Plotly.d3.json('download_date/peroid', function(rawData){
       downloadTrendChartData = [{
@@ -39,7 +39,7 @@ function plotTrendChart() {
 /*
 * desc : auto resize charts (RWD)
 */
-function rendering() {
+function renderingDwnChart() {
   if(window.jQuery && $("#downloadTrendChartContainer").length > 0 && $("#downloadTrendChart").length > 0) {
     Plotly.d3.select('#downloadTrendChart svg').html('');
     // set layout options
@@ -57,10 +57,10 @@ function rendering() {
 */
 $(document).ready(function() {
   sortDwnTable();
-  plotTrendChart();
+  plotDwnTrendChart();
   
   // listen to the resize event
-  Plotly.d3.select(window).on('resize', rendering);
+  Plotly.d3.select(window).on('resize.dwnChart', renderingDwnChart);
 });
 
 
