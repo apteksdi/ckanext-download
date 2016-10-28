@@ -69,21 +69,6 @@ ckan.tracking_enabled = true
 ```
 
 
-# Running the test
-To run the tests, do::
-
-```bash
-nosetests --nologcapture --with-pylons=test.ini
-```
-
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run::
-
-```bash
-nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.download --cover-inclusive --cover-erase --cover-tests
-```
-
-
 # Development Installation
 
 
@@ -113,7 +98,9 @@ To install ckanext-download:
 
 2. Install the ckanext-download Python package into your virtual environment::
 ```bash
-pip install ckanext-download
+git clone https://github.com/jiankaiwang/ckanext-download.git
+cd ckanext-download
+python setup.py install
 ```
 
 3. Add ``download`` to the ``ckan.plugins`` setting in your CKAN
