@@ -137,7 +137,9 @@ class DownloadController(base.BaseController):
 
             # redirect to the data url
             #r = helpers.redirect_to(unicode(plugins.toolkit.request.params.get('dataurl')).encode('utf-8'))
-            r = redirect_to(unicode(plugins.toolkit.request.params.get('dataurl')).encode('utf-8'))
+            searchObj = re.search(r'.*download\?resourceid=.*&dataurl=(.*)', unicode(plugins.toolkit.request.url).encode('utf-8'), re.M | re.I)
+            redirUrl = searchObj.groups()[0]
+            r = redirect_to(redirUrl)
             return r
         else:
             return self.__renderUrl('index')
