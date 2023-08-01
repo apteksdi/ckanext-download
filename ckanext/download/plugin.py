@@ -1,7 +1,7 @@
 import ckan.plugins as plugins
 import ckan.lib.helpers as helpers
 import ckan.plugins.toolkit as toolkit
-import ckan.lib.base as base
+#import ckan.lib.base as base
 import ckan.lib.render as render
 import routes.mapper
 from routes import redirect_to
@@ -949,7 +949,7 @@ class DownloadPlugin(plugins.SingletonPlugin):
         return route_map
 
 
-class DownloadController(base.BaseController):
+class DownloadController(toolkit.BaseController):
 
     def __countRes(self, getResID):
         countDownload(getResID)
