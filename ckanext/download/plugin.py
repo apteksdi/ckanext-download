@@ -884,11 +884,11 @@ class DownloadPlugin(plugins.SingletonPlugin):
         match = pattern.match(url)
         if match:
             link = pattern.findall(url)[0]
-            p2l = py2psql.py2psql(link[2],link[3],link[4],"",link[0],link[1])
+            p2l = (link[2],link[3],link[4],"",link[0],link[1])
         else:
             pattern = re.compile('\S+://(\S+):(\S+)@(\S+)/(\S+)')
             link = pattern.findall(url)[0]
-            p2l = py2psql.py2psql(link[2],"5432",link[3],"",link[0],link[1])
+            p2l = (link[2],"5432",link[3],"",link[0],link[1])
 
         p2l.createTable(\
             "download_summary", \
