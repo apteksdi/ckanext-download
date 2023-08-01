@@ -8,7 +8,7 @@ from routes import redirect_to
 import os.path
 #import py2psql
 import json
-from pylons import config
+from ckan.plugins.toolkit import url_for, redirect_to, request, config
 import re
 from helpers import * 
 import peroid
