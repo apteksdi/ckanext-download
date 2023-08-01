@@ -949,7 +949,7 @@ class DownloadPlugin(plugins.SingletonPlugin):
         return route_map
 
 
-class DownloadController(toolkit.BaseController):
+class DownloadController(plugins.toolkit.BaseController):
 
     def __countRes(self, getResID):
         countDownload(getResID)
